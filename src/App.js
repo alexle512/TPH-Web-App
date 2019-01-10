@@ -5,19 +5,28 @@ import StockInfo from './components/StockInfo'
 import NewsList from './components/NewsList'
 import ChartLineGraph from './components/ChartLineGraph'
 import ChartTable from './components/ChartTable'
-
+import SignIn from './components/auth/SignIn'
+import SignUp from './components/auth/SignUp'
+import {BrowserRouter} from 'react-router-dom'
+import {Switch, Route} from 'react-router'
+import Dashboard from './components/dashboard/dashboard'
+import Navbar from './components/layout/navbar'
+import ProjectDetails from './components/projects/ProjectDetails'
+import CreateProject from './components/projects/CreateProject'
 
 import {
   loadQuotesForStock,
   loadLogoForStock,
   loadRecentNewsForStock,
-  loadChartForStock
+  loadChartForStock,
+  loadBatchStocks
 } from './api/iex'
+
 
 class App extends Component {
   state = {
     error: null,
-    enteredSymbol: 'NFLX',
+    enteredSymbol: 'BP',
     quote: null,
     quoteHistory: [],
     showHistory: false,
@@ -60,6 +69,7 @@ class App extends Component {
       })
       .catch(error => {
         // If 404 not found
+        console.log(error+" this is the error")
         if (error.response.status === 404) {
           error = new Error(`The stock symbol ${enteredSymbol} does not exist`)
         }
@@ -143,6 +153,19 @@ class App extends Component {
     })
 
     return (
+      <div>
+      <BrowserRouter>
+      <div className="App">
+      <Navbar />
+      <Switch>
+        <Route exact path='/'component={Dashboard} />
+        <Route path='/project/:id' component={ProjectDetails} />
+        <Route path='/signin' component={SignIn} />
+        <Route path='/signup' component={SignUp} />
+        <Route path='/create' component={CreateProject} />      
+        </Switch>
+      </div>
+      </BrowserRouter>
       <div className="App pb-3">
         <div className="jumbotron jumbotron-fluid bg-dark text-light">
           <div className="container">
@@ -174,7 +197,7 @@ class App extends Component {
             </div>
           </div>
         </div>
-
+      
         <div className="container-fluid">
           <div className="row">
             {!!error && (
@@ -268,8 +291,10 @@ class App extends Component {
           </div>
         </div>
       </div>
+      </div>
     )
   }
 }
+
 
 export default App

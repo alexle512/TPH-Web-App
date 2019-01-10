@@ -23,3 +23,8 @@ export const loadChartForStock = (symbol, range) => {
   return api.get(`/stock/${symbol}/chart/${range}`)
     .then( res => res.data)
 }
+
+export const loadBatchStocks = (symbol) => {
+  return api.get(`/stock/${symbol}/batch`)
+  .then( res => res.data)
+}
