@@ -1,13 +1,24 @@
 import React, {Component} from 'react'
-import moment from 'moment'
 import {
   loadQuotesForStock,
   loadLogoForStock,
   loadRecentNewsForStock,
   loadChartForStock,
-  loadBatchStocks
 } from '../../api/iex'
 import StockInfo from '../StockInfo'
+import firebase from 'firebase'
+import 'firebase/firestore'
+
+var config = {
+  apiKey: "AIzaSyCeNDaN2QTtwnAsF1HQ2fvdDDxTRoN55eY",
+  authDomain: "tph-app-907cd.firebaseapp.com",
+  databaseURL: "https://tph-app-907cd.firebaseio.com",
+  projectId: "tph-app-907cd",
+  storageBucket: "tph-app-907cd.appspot.com",
+  messagingSenderId: "955009984574"
+};
+firebase.initializeApp(config)
+
 
 class ProjectSummary extends Component {
   constructor(props){
@@ -24,7 +35,12 @@ class ProjectSummary extends Component {
       showAllChart: false
     }
   }
-    
+ 
+
+  removeProject(projectId) {
+    const projectRef= firebase.database().ref(`/projects/${projectId}`);
+    projectRef.remove();
+  }
 
   componentDidMount = () => {
     this.loadQuote()
@@ -53,7 +69,7 @@ class ProjectSummary extends Component {
             error: null,
             quoteHistory: history,
             news: news,
-            chart: chart
+            chart: chart,
           }
         })
       })
@@ -82,7 +98,5 @@ class ProjectSummary extends Component {
   }
 }
 
-export default ProjectSummary
 
-// <p>Posted by {this.props.authorFirstname} {this.props.authorLastName} </p>
-//         <p className="grey-text">{moment(this.props.createdAt.toDate()).calendar()}</p>
+export default ProjectSummary

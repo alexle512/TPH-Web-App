@@ -1,11 +1,11 @@
 .card {
-  min-width: 30rem;
+  min-width: 26rem;
   /* max-width: 30rem; */
 }
 
 .charts {
-  min-width: 30rem;
-  max-width: 30rem;
+  min-width: 26rem;
+  max-width: 26rem;
 }
 
 /* .quote-image {

@@ -18,10 +18,10 @@ const StockInfo = ({
         <h2 className="card-title p-2"><strong>{ symbol } - { companyName }</strong></h2>
       </div>
       <ul className="list-group list-group-flush">
-        <li className="list-group-item"><strong>{ latestSource }</strong> <span className="text-primary">{ latestPrice }</span></li>
-        <li className="list-group-item"><strong>Week 52 High</strong> <span className="text-success">{ week52High }</span></li>
-        <li className="list-group-item"><strong>Week 52 Low</strong> <span className="text-danger">{ week52Low }</span></li>
-        <li className="list-group-item"><strong>Exchange</strong> { primaryExchange }</li>
+        <li className="list-group-item"><strong>{ latestSource }: </strong> <span className="text-primary">{ latestPrice }</span></li>
+        <li className="list-group-item"><strong>Week 52 High: </strong> <span className="text-success">{ week52High }</span></li>
+        <li className="list-group-item"><strong>Week 52 Low: </strong> <span className="text-danger">{ week52Low }</span></li>
+        <li className="list-group-item"><strong>Exchange: </strong> { primaryExchange }</li>
       </ul>
       
     </div>

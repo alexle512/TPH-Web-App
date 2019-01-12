@@ -8,12 +8,7 @@ const ChartItem = ({
   close,
   volume,
   stockIsUp
-  // unadjustedVolume,
-  // change,
-  // changePercent,
-  // vwap,
-  // label,
-  // changeOverTime
+
 }) => {
   return (
     <tr>

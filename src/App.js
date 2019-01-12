@@ -14,19 +14,19 @@ import Navbar from './components/layout/navbar'
 import ProjectDetails from './components/projects/ProjectDetails'
 import CreateProject from './components/projects/CreateProject'
 
+
 import {
   loadQuotesForStock,
   loadLogoForStock,
   loadRecentNewsForStock,
   loadChartForStock,
-  loadBatchStocks
 } from './api/iex'
 
 
 class App extends Component {
   state = {
     error: null,
-    enteredSymbol: 'BP',
+    enteredSymbol:"BP",
     quote: null,
     quoteHistory: [],
     showHistory: false,
@@ -78,8 +78,6 @@ class App extends Component {
   }
 
   onChangeEnteredSymbol = event => {
-    // The <input> text value entered by user
-    // No Spaces, Upper case, Limited to 4 chars
     const value = event.target.value
       .trim()
       .toUpperCase()
@@ -158,8 +156,8 @@ class App extends Component {
       <div className="App">
       <Navbar />
       <Switch>
-        <Route exact path='/'component={Dashboard} />
-        <Route path='/project/:id' component={ProjectDetails} />
+        <Route exact path='/dashboard'component={Dashboard} />
+        {/* <Route path='/project/:id' component={ProjectDetails} /> */}
         <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} />
         <Route path='/create' component={CreateProject} />      
@@ -167,11 +165,8 @@ class App extends Component {
       </div>
       </BrowserRouter>
       <div className="App pb-3">
-        <div className="jumbotron jumbotron-fluid bg-dark text-light">
+        <div className="jumbotron jumbotron-fluid bg-dark text-white">
           <div className="container">
-          <h1>
-    <img src="./doc/images/logo.png" alt="Tudor Pickering Holt & Co" />
-  </h1>
   <p> </p>
             <div className="row">
               <div className="col input-group">
@@ -214,7 +209,7 @@ class App extends Component {
 
           <div className="row mt-3">
             <div className="col">
-              <h2>Latest Quote</h2>
+              
               {!!quote ? <StockInfo {...quote} /> : <p>Loading...</p>}
 
               <div className="mt-3">
@@ -264,9 +259,9 @@ class App extends Component {
             <div className="col">
               {!!chart && (
                 <div className="charts">
-                  <h2 className="text-center">
-                    {!!companyName && companyName + ' (Past 6 months)'}
-                  </h2>
+                  <h4 className="text-center">
+                    {'Past 6 months'}
+                  </h4>
                   <ChartLineGraph
                     title={enteredSymbol}
                     chartLabels={chartDates}
