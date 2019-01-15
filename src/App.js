@@ -11,9 +11,7 @@ import {BrowserRouter} from 'react-router-dom'
 import {Switch, Route} from 'react-router'
 import Dashboard from './components/dashboard/dashboard'
 import Navbar from './components/layout/navbar'
-import ProjectDetails from './components/projects/ProjectDetails'
 import CreateProject from './components/projects/CreateProject'
-
 
 import {
   loadQuotesForStock,
@@ -157,7 +155,6 @@ class App extends Component {
       <Navbar />
       <Switch>
         <Route exact path='/dashboard'component={Dashboard} />
-        {/* <Route path='/project/:id' component={ProjectDetails} /> */}
         <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} />
         <Route path='/create' component={CreateProject} />      
@@ -170,11 +167,12 @@ class App extends Component {
   <p> </p>
             <div className="row">
               <div className="col input-group">
-                <input
+                <input 
                   value={enteredSymbol}
                   type="text"
                   className="form-control"
                   placeholder="Symbol e.g. NFLX"
+                  class="placeholder"
                   aria-label="Symbol"
                   onChange={this.onChangeEnteredSymbol}
                   onKeyDown={this.onKeyDownPressEnter}
@@ -213,6 +211,13 @@ class App extends Component {
               {!!quote ? <StockInfo {...quote} /> : <p>Loading...</p>}
 
               <div className="mt-3">
+              <button
+                  className="btn btn-dark btn-block"
+                  onClick={this.handleSubmit}
+                >
+                Add to Portfolio
+                </button>
+
                 <button
                   className="btn btn-dark btn-block"
                   onClick={this.onClickShowHistory}

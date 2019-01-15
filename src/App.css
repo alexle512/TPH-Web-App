@@ -5,11 +5,18 @@
 
 .charts {
   min-width: 26rem;
-  max-width: 26rem;
+  max-width: 42rem;
 }
 
+.placeholder {
+  color: #ffffff
+}
 /* .quote-image {
   max-width: 200px;
   min-width: 200px;
   height: auto;
 } */
+
+.navwrapper {
+  background-color: #343a40
+}

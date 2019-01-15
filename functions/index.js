@@ -1,20 +1,8 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-admin.initializeApp(config)
-firebase.initializeApp(functions.config().firebase)
+admin.initializeApp(functions.config().firebase)
 
-
-var config = {
-    apiKey: "AIzaSyCeNDaN2QTtwnAsF1HQ2fvdDDxTRoN55eY",
-    authDomain: "tph-app-907cd.firebaseapp.com",
-    databaseURL: "https://tph-app-907cd.firebaseio.com",
-    projectId: "tph-app-907cd",
-    storageBucket: "tph-app-907cd.appspot.com",
-    messagingSenderId: "955009984574"
-  };
-
-
-const createNotification = (notification => {
+const createNotification = ((notification) => {
     return admin.firestore().collection('notifications')
       .add(notification)
       .then(doc => console.log('notification added', doc))
@@ -32,6 +20,7 @@ exports.projectCreated = functions.firestore
     }
 
     return createNotification(notification)
+
 })
 
 exports.userJoined = functions.auth.user()

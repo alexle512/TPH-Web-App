@@ -14,7 +14,6 @@ class CreateProject extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(this.state);
     this.props.createProject(this.state);
     this.props.history.push('/');
   }
@@ -28,7 +27,7 @@ class CreateProject extends Component {
         <form className="white" onSubmit={this.handleSubmit}>
           <h5 className="grey-text text-darken-3">Add Stock to Portfolio</h5>
           <div className="input-field">
-            <input type="text" id='title' onChange={this.handleChange} />
+          <input type="text" id='title' onChange={this.handleChange} />
             <label htmlFor="title">Enter ticker</label>
           </div>
           <div className="input-field">

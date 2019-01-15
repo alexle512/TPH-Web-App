@@ -1,5 +1,5 @@
 export const createProject = (project) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
