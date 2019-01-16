@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import firebase from 'firebase'
+import firebase from '../../config/fbConfig.js'
 import {
   loadQuotesForStock,
   loadLogoForStock,
@@ -7,17 +7,7 @@ import {
   loadChartForStock,
 } from '../../api/iex'
 import StockInfo from '../StockInfo'
-// import firebase from '../../index'
 import { withFirebase } from 'react-redux-firebase'
-// var config = {
-//   apiKey: "AIzaSyCeNDaN2QTtwnAsF1HQ2fvdDDxTRoN55eY",
-//   authDomain: "tph-app-907cd.firebaseapp.com",
-//   databaseURL: "https://tph-app-907cd.firebaseio.com",
-//   projectId: "tph-app-907cd",
-//   storageBucket: "tph-app-907cd.appspot.com",
-//   messagingSenderId: "955009984574"
-// };
-// firebase.initializeApp(config)
 
 
 class ProjectSummary extends Component {
@@ -25,6 +15,7 @@ class ProjectSummary extends Component {
     super(props)
     this.state = {
       error: null,
+      project: this.props.project,
       enteredSymbol: this.props.project.title,
       quote: null,
       quoteHistory: [],
@@ -54,15 +45,30 @@ class ProjectSummary extends Component {
       })
 }
 
-  // removeProject(projectId) {
-  //   console.log(projectId)
-  //   const projectRef= firebase.database().ref(`projects/${projectId}`);
-  //   console.log(projectRef)
-  //   projectRef.remove();
-  // }
 
   componentDidMount = () => {
+    const ref = firebase.firestore().collection('projects').doc(this.state.project.id)
+    ref.get().then((doc) => {
+      if (doc.exists) {
+        this.setState({
+          board: doc.data(),
+          key: doc.id,
+          isLoading: false
+        })
+      }else {
+        console.log("No such quote in portfolio")
+      }
+    })
     this.loadQuote()
+  }
+
+  deleteOne(id) {
+    firebase.firestore().collection('projects').doc(id).delete().then(() => {
+      console.log("Successfully Removed")
+      this.props.history.push("/")
+    }).catch ((error) => {
+      console.error("Error removing stock from portfolio", error)
+    })
   }
 
   loadQuote = () => {
@@ -110,7 +116,7 @@ class ProjectSummary extends Component {
     <div className="card z-depth-0 project-summary">
       <div className="card-content grey-text text-darken-3">
         <span className="card-title ">{this.props.project.title}</span>
-        <button onClick={() => {this.delOnClick()}}>Delete</button>
+        <button onClick={() => {this.deleteOne(this.state.project.id)}}>Delete</button>
 
         {!!quote ? <StockInfo {...quote} /> : <p>Improper stock symbol</p>}
       </div>
