@@ -8,6 +8,7 @@ import {
 } from '../../api/iex'
 import StockInfo from '../StockInfo'
 import { withFirebase } from 'react-redux-firebase'
+import history from './history'
 
 
 class ProjectSummary extends Component {
@@ -27,25 +28,6 @@ class ProjectSummary extends Component {
     }
   }
  
-//   removeProject (projectId) {
-//     firebase.database("projects").doc(projectId).delete().then(function() {
-//     console.log("Document successfully deleted!");
-// }).catch(function(error) {
-//     console.error("Error removing document: ", error);
-// });}
-
-  delOnClick(projectId) {
-  var firebaseRef = firebase.database().ref(`projects/${projectId}`);
-  firebaseRef.remove()
-      .then(function () {
-          console.log("Remove succeeded.")
-      })
-      .catch(function (error) {
-          console.log("Remove failed: " + error.message)
-      })
-}
-
-
   componentDidMount = () => {
     const ref = firebase.firestore().collection('projects').doc(this.state.project.id)
     ref.get().then((doc) => {
@@ -65,10 +47,13 @@ class ProjectSummary extends Component {
   deleteOne(id) {
     firebase.firestore().collection('projects').doc(id).delete().then(() => {
       console.log("Successfully Removed")
-      this.props.history.push("/")
+      history.push('/dashboard')
+      
     }).catch ((error) => {
       console.error("Error removing stock from portfolio", error)
     })
+
+   
   }
 
   loadQuote = () => {

@@ -12,6 +12,7 @@ import {Switch, Route} from 'react-router'
 import Dashboard from './components/dashboard/dashboard'
 import Navbar from './components/layout/navbar'
 import CreateProject from './components/projects/CreateProject'
+import Calendar from './components/Calendar'
 
 import {
   loadQuotesForStock,
@@ -24,7 +25,7 @@ import {
 class App extends Component {
   state = {
     error: null,
-    enteredSymbol:"BP",
+    enteredSymbol:"",
     quote: null,
     quoteHistory: [],
     showHistory: false,
@@ -129,7 +130,7 @@ class App extends Component {
       showAllNews,
       chart,
       showAllChart,
-      error
+      // error
     } = this.state
 
     const chartReverse = [...chart].reverse()
@@ -158,11 +159,12 @@ class App extends Component {
         <Route path='/signin' component={SignIn} />
         <Route path='/signup' component={SignUp} />
         <Route path='/create' component={CreateProject} />      
+        <Route path ='/Calendar' component = {Calendar} />
         </Switch>
       </div>
       </BrowserRouter>
       <div className="App pb-3">
-        <div className="jumbotron jumbotron-fluid bg-dark text-white">
+        <div className="jumbotron jumbotron-fluid bg-white text-white">
           <div className="container">
   <p> </p>
             <div className="row">
@@ -191,8 +193,9 @@ class App extends Component {
           </div>
         </div>
       
-        <div className="container-fluid">
+        {/* <div className="container-fluid">
           <div className="row">
+
             {!!error && (
               <div className="col alert alert-danger" rolw="alert">
                 <h4 class="alert-heading">Sadly..</h4>
@@ -203,20 +206,16 @@ class App extends Component {
                 </p>
               </div>
             )}
-          </div>
+          </div> */}
 
           <div className="row mt-3">
             <div className="col">
               
-              {!!quote ? <StockInfo {...quote} /> : <p>Loading...</p>}
+              {/* {!!quote ? <StockInfo {...quote} /> : <p>Loading...</p>} */}
+              <StockInfo {...quote} />
 
               <div className="mt-3">
-              <button
-                  className="btn btn-dark btn-block"
-                  onClick={this.handleSubmit}
-                >
-                Add to Portfolio
-                </button>
+      
 
                 <button
                   className="btn btn-dark btn-block"
@@ -291,7 +290,7 @@ class App extends Component {
           </div>
         </div>
       </div>
-      </div>
+      // </div>
     )
   }
 }
