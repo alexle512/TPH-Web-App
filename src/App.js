@@ -13,6 +13,8 @@ import Dashboard from './components/dashboard/dashboard'
 import Navbar from './components/layout/navbar'
 import CreateProject from './components/projects/CreateProject'
 import Calendar from './components/Calendar'
+import Newsletter from './components/Newsletter'
+
 
 import {
   loadQuotesForStock,
@@ -155,11 +157,12 @@ class App extends Component {
       <div className="App">
       <Navbar />
       <Switch>
-        <Route exact path='/dashboard'component={Dashboard} />
-        <Route path='/signin' component={SignIn} />
-        <Route path='/signup' component={SignUp} />
-        <Route path='/create' component={CreateProject} />      
-        <Route path ='/Calendar' component = {Calendar} />
+        <Route exact path='/dashboard' component={Dashboard} />
+        <Route exact path='/signin' component={SignIn} />
+        <Route exact path='/signup' component={SignUp} />
+        <Route exact path='/create' component={CreateProject} />      
+        <Route exact path ='/Calendar' component = {Calendar} />
+        <Route exact path ='/weeklynews' component = {Newsletter} />
         </Switch>
       </div>
       </BrowserRouter>

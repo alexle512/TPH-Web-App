@@ -14,9 +14,9 @@ var styles = {
 const Calendar = (props) => {
     return (
         <div>
-        <iframe src="https://calendar.google.com/calendar/embed?src=alexle512%40gmail.com&ctz=America%2FChicago" style={styles}></iframe>
+        <iframe title= "calendar" src="https://calendar.google.com/calendar/embed?src=alexle512%40gmail.com&ctz=America%2FChicago" style={styles}></iframe>
         </div>
     )
 }
 
-export default Calendar
+export default Calendar 
