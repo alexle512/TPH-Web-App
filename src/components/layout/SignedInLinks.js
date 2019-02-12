@@ -10,11 +10,9 @@ const SignedInLinks = (props) => {
         <li><NavLink to='/create' style={{textDecoration: 'none'}}>Add Stock to Portfolio</NavLink></li>
         <li><NavLink to='/calendar' style={{textDecoration: 'none'}}>Calendar of Events</NavLink></li>
         <li><NavLink to='/weeklynews' style={{textDecoration: 'none'}}>TPH Weekly Newsletter</NavLink></li>
-
+        <li><NavLink to='/dashboard'> My Portfolio </NavLink></li>
         <li><a href='/' onClick={props.signOut}>Log Out</a></li>
-        <li><NavLink to='/dashboard' className="btn btn-floating pink lighten-1">
-          {props.profile.initials}
-        </NavLink></li>
+       
       </ul>
     </div>
   )

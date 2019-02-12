@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 import { connect } from 'react-redux'
@@ -13,7 +13,7 @@ const Navbar = (props) => {
     return (
         <nav className="navwrapper">
          <div className="container navLink">
-            <Link to='/' ><img src="https://i.imgur.com/AA6NzQY.png" style={{textDecoration: 'none'}} alt="TPH Logo" className="logo"/></Link>
+            <NavLink exact path to='/' ><img src="https://i.imgur.com/AA6NzQY.png" style={{textDecoration: 'none'}} alt="TPH Logo" className="logo"/></NavLink>
             { links }
          </div>
          </nav>

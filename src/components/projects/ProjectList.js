@@ -6,7 +6,6 @@ import 'firebase/auth'
 
 const ProjectList = ({projects}) => {
 
-  
   return (
     <div className="project-list section" id="project-list">
       { projects && projects.map(project => {

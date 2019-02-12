@@ -48,7 +48,6 @@ class ProjectSummary extends Component {
     firebase.firestore().collection('projects').doc(id).delete().then(() => {
       console.log("Successfully Removed")
       history.push('/dashboard')
-      
     }).catch ((error) => {
       console.error("Error removing stock from portfolio", error)
     })
